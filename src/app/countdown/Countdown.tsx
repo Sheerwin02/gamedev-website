@@ -1,8 +1,9 @@
-// components/Countdown.tsx
+// TODO: Move to components/Countdown.tsx
 import React, { useEffect, useState } from "react";
-import { TimerContainer } from "./TimerContainer";
+import { TimerContainer } from "../../../components/countdown/TimerContainer";
 
 const Countdown = () => {
+  // TODO: Sheerwin - Change to expected launch date
   const targetLaunchDate = new Date("2024-01-01T00:00:00");
 
   // Calculate the remaining time until the target launch
