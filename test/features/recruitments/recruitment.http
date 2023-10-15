@@ -6,10 +6,26 @@
 GET http://localhost:3000/api/recruitment
 Content-Type: application/json
 
-# # Expected Response
+# Expected Response
 # HTTP/1.1 200 OK
 # Content-Type: application/json
 
 ###
 # End of GET Request Test
 ###
+
+###
+# POST Request Test
+###
+
+# Request
+POST http://localhost:3000/api/recruitment
+Content-Type: application/json
+
+{
+  "position": "Software Engineer",
+  "description": "Join our team!",
+  "requirement": "Experience with web development",
+  "postedDate": "2023-10-13"
+}
+

@@ -16,11 +16,11 @@ export async function getAllRecruitments(req: NextApiRequest, res: NextApiRespon
 
 export async function createRecruitment(req: NextApiRequest, res: NextApiResponse) {
   try {
-    const { position, description, requirements, postedDate } = req.body;
+    const { position, description, requirement, postedDate } = req.body;
     const recruitment = await recruitmentRepository.createRecruitment({
       position,
       description,
-      requirements,
+      requirement,
       postedDate: new Date(postedDate),
     });
     res.status(201).json(recruitment);

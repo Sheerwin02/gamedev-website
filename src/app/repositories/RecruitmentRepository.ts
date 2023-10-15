@@ -42,7 +42,7 @@ class RecruitmentRepository {
   async createRecruitment(data: {
     position: string;
     description: string;
-    requirements: string;
+    requirement: string;
     postedDate: Date;
   }): Promise<Model> {
     const t: Transaction = await this.sequelize.transaction();
