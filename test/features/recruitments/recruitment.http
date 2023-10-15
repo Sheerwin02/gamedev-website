@@ -1,0 +1,54 @@
+###
+# GET Request Test
+###
+@id = 1
+@base_url = "http://localhost:3000/api/recruitments"
+
+# Request
+GET http://localhost:3000/api/recruitment
+Content-Type: application/json
+
+###
+# GET BY ID Request Test
+###
+
+# Request
+GET http://localhost:3000/api/recruitments/{{id}}
+Content-Type: application/json
+
+###
+# POST Request Test
+###
+
+# Request
+POST http://localhost:3000/api/recruitment
+Content-Type: application/json
+
+{
+  "position": "Software Engineer",
+  "description": "Join our team!",
+  "requirement": "Experience with web development",
+  "postedDate": "2023-10-13"
+}
+
+###
+# PUT Request Test
+###
+
+PUT http://localhost:3000/api/recruitments/{{id}}
+Content-Type: application/json
+
+{
+  "position": "Updated Position",
+  "description": "Updated Description",
+  "requirements": "Updated Requirements",
+  "postedDate": "2023-10-15T12:00:00Z"
+}
+
+###
+# DELETE Request Test
+###
+
+DELETE http://localhost:3000/api/recruitments/{{id}}
+Content-Type: application/json
+
