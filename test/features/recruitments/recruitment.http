@@ -1,0 +1,15 @@
+###
+# GET Request Test
+###
+
+# Request
+GET http://localhost:3000/api/recruitment
+Content-Type: application/json
+
+# # Expected Response
+# HTTP/1.1 200 OK
+# Content-Type: application/json
+
+###
+# End of GET Request Test
+###

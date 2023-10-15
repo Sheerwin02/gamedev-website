@@ -40,7 +40,7 @@ const defineRecruitmentModel = (sequelize: Sequelize) => {
       tableName: 'game_dev_recruitments',
     }
   );
-  return Recruitment; 
+  return Recruitment;
 };
 
 export { defineRecruitmentModel, Recruitment };

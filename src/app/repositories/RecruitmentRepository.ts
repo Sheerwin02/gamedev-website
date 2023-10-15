@@ -1,13 +1,17 @@
-import { Sequelize, Model } from 'sequelize';
+import { Sequelize, Model, Transaction } from 'sequelize';
+
 import DbHelper from '../db/DbHelper';
 import { CustomError, ErrorType } from '../db/errorHelper';
+import { Recruitment, defineRecruitmentModel } from '../models/Recruitment';
 
 class RecruitmentRepository {
   private static instance: RecruitmentRepository;
   private readonly sequelize: Sequelize;
+  private readonly RecruitmentModel: typeof Recruitment;
 
   private constructor() {
     this.sequelize = DbHelper.getInstance().getSequelize();
+    this.RecruitmentModel = defineRecruitmentModel(this.sequelize);
   }
 
   static getInstance(): RecruitmentRepository {
@@ -19,7 +23,8 @@ class RecruitmentRepository {
 
   async findRecruitmentById(id: number): Promise<Model | null> {
     try {
-      return await this.sequelize.models.Recruitment.findByPk(id);
+      const recruitment = await this.RecruitmentModel.findByPk(id);
+      return recruitment;
     } catch (error) {
       throw new CustomError(ErrorType.NotFound, 'Recruitment not found');
     }
@@ -27,7 +32,8 @@ class RecruitmentRepository {
 
   async getRecruitments(): Promise<Model[]> {
     try {
-      return await this.sequelize.models.Recruitment.findAll();
+      const recruitments = await this.RecruitmentModel.findAll();
+      return recruitments;
     } catch (error) {
       throw new CustomError(ErrorType.InternalServerError, 'Internal server error');
     }
@@ -39,9 +45,10 @@ class RecruitmentRepository {
     requirements: string;
     postedDate: Date;
   }): Promise<Model> {
-    const t = await this.sequelize.transaction();
+    const t: Transaction = await this.sequelize.transaction();
+
     try {
-      const recruitment = await this.sequelize.models.Recruitment.create(data, { transaction: t });
+      const recruitment = await this.RecruitmentModel.create(data, { transaction: t });
       await t.commit();
       return recruitment;
     } catch (error) {
@@ -56,11 +63,12 @@ class RecruitmentRepository {
     requirements: string;
     postedDate: Date;
   }): Promise<Model> {
-    const t = await this.sequelize.transaction();
+    const t: Transaction = await this.sequelize.transaction();
+
     try {
       const recruitment = await this.findRecruitmentById(id);
       if (!recruitment) {
-        throw new CustomError(ErrorType.ValidationError, 'Recruitment not found');
+        throw new CustomError(ErrorType.NotFound, 'Recruitment not found');
       }
 
       await recruitment.update(data, { transaction: t });
@@ -73,7 +81,8 @@ class RecruitmentRepository {
   }
 
   async deleteRecruitment(id: number): Promise<void> {
-    const t = await this.sequelize.transaction();
+    const t: Transaction = await this.sequelize.transaction();
+
     try {
       const recruitment = await this.findRecruitmentById(id);
       if (!recruitment) {

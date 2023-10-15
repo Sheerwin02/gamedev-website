@@ -11,7 +11,7 @@ class DbHelper {
       password: process.env.DB_PASSWORD,
       host: process.env.DB_HOST,
       dialect: 'mysql',
-      logging: true,
+      logging: console.log,
       define: {
         underscored: true, // Convert camelCase to snake_case for field names
       },
