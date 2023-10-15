@@ -14,6 +14,20 @@ export async function getAllRecruitments(req: NextApiRequest, res: NextApiRespon
   }
 }
 
+export async function getRecruitmentById(req: NextApiRequest, res: NextApiResponse) {
+  const { id } = req.query;
+  try {
+    const recruitment = await recruitmentRepository.findRecruitmentById(Number(id));
+    if (recruitment) {
+      res.status(200).json(recruitment);
+    } else {
+      res.status(404).json({ error: 'Recruitment not found' });
+    }
+  } catch (error) {
+    handleError(error, res);
+  }
+}
+
 export async function createRecruitment(req: NextApiRequest, res: NextApiResponse) {
   try {
     const { position, description, requirement, postedDate } = req.body;
@@ -29,11 +43,10 @@ export async function createRecruitment(req: NextApiRequest, res: NextApiRespons
   }
 }
 
-// Implement other controller methods (updateRecruitment, deleteRecruitment) similarly
 export async function updateRecruitment(id: number, data: {
     position: string;
     description: string;
-    requirements: string;
+    requirement: string;
     postedDate: Date;
   }, res: NextApiResponse) {
     try {

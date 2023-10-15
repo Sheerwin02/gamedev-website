@@ -1,18 +1,24 @@
 ###
 # GET Request Test
 ###
+@id = 1
+@base_url = "http://localhost:3000/api/recruitments"
 
 # Request
 GET http://localhost:3000/api/recruitment
 Content-Type: application/json
 
-# Expected Response
-# HTTP/1.1 200 OK
-# Content-Type: application/json
+###
+# End of GET ALL Request Test
+###
 
 ###
-# End of GET Request Test
+# GET BY ID Request Test
 ###
+
+# Request
+GET http://localhost:3000/api/recruitments/{{id}}
+Content-Type: application/json
 
 ###
 # POST Request Test
