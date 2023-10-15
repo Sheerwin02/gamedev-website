@@ -4,7 +4,7 @@ class Recruitment extends Model {
   public id!: number;
   public position!: string;
   public description!: string;
-  public requirements!: string;
+  public requirement!: string;
   public postedDate!: Date;
 }
 
@@ -24,7 +24,7 @@ const defineRecruitmentModel = (sequelize: Sequelize) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      requirements: {
+      requirement: {
         type: DataTypes.STRING,
         allowNull: false,
       },
