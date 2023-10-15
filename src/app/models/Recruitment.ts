@@ -6,6 +6,7 @@ class Recruitment extends Model {
   public description!: string;
   public requirement!: string;
   public postedDate!: Date;
+  public deletedAt!: Date | null;
 }
 
 const defineRecruitmentModel = (sequelize: Sequelize) => {
@@ -33,8 +34,13 @@ const defineRecruitmentModel = (sequelize: Sequelize) => {
         field: 'posted_date',
         allowNull: false,
       },
+      deletedAt: {
+        type: DataTypes.DATE,
+        allowNull: true,
+      },
     },
     {
+      paranoid: true,
       sequelize,
       modelName: 'Recruitment',
       tableName: 'game_dev_recruitments',

@@ -88,7 +88,6 @@ class RecruitmentRepository {
       if (!recruitment) {
         throw new CustomError(ErrorType.NotFound, 'Recruitment not found');
       }
-
       await recruitment.destroy({ transaction: t });
       await t.commit();
     } catch (error) {

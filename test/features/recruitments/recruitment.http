@@ -9,10 +9,6 @@ GET http://localhost:3000/api/recruitment
 Content-Type: application/json
 
 ###
-# End of GET ALL Request Test
-###
-
-###
 # GET BY ID Request Test
 ###
 
@@ -34,4 +30,25 @@ Content-Type: application/json
   "requirement": "Experience with web development",
   "postedDate": "2023-10-13"
 }
+
+###
+# PUT Request Test
+###
+
+PUT http://localhost:3000/api/recruitments/{{id}}
+Content-Type: application/json
+
+{
+  "position": "Updated Position",
+  "description": "Updated Description",
+  "requirements": "Updated Requirements",
+  "postedDate": "2023-10-15T12:00:00Z"
+}
+
+###
+# DELETE Request Test
+###
+
+DELETE http://localhost:3000/api/recruitments/{{id}}
+Content-Type: application/json
 
