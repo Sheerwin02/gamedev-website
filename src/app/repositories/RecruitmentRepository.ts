@@ -1,6 +1,6 @@
 import DbHelper from '../db/DbHelper';
 import { Recruitment, defineRecruitmentModel } from '../models/Recruitment';
-import RepositoryBase from './RepositoryBase';
+import RepositoryBase from '../base/RepositoryBase';
 
 class RecruitmentRepository extends RepositoryBase<Recruitment> {
   static instance: RecruitmentRepository;
