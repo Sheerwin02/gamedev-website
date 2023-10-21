@@ -1,33 +1,26 @@
 import React from "react";
-import { Recruitment } from "./RecruitmentList";
+
+interface Recruitment {
+  id: number;
+  position: string;
+  description: string;
+  requirements: string;
+  postedDate: string;
+}
 
 interface Props {
   recruitment: Recruitment;
-  isSelected: boolean;
-  onItemClick: (id: number) => void;
 }
 
-const RecruitmentItem: React.FC<Props> = ({
-  recruitment,
-  isSelected,
-  onItemClick,
-}) => {
-  const { id, position, description, requirements, postedDate } = recruitment;
-
+const RecruitmentItem: React.FC<Props> = ({ recruitment }) => {
   return (
-    <div
-      className={`p-4 border border-gray-300 rounded-lg mb-4 cursor-pointer hover:shadow-md ${
-        isSelected ? "bg-blue-100" : ""
-      }`}
-      onClick={() => onItemClick(id)}
-    >
-      <h2 className="text-xl font-semibold text-blue-500">{position}</h2>
-      <p className="text-gray-700 mt-2">{description}</p>
-      <p className="text-gray-700 mt-2">
-        <span className="font-semibold">Requirements:</span>{" "}
-        {requirements.join(", ")}
-      </p>
-      <p className="text-gray-500 mt-2">Posted: {postedDate}</p>
+    <div className="rounded-lg bg-white border border-gray-200 shadow-md p-4 my-4 cursor-pointer hover:bg-gray-100 transition-transform transform hover:scale-105">
+      <h3 className="text-lg font-semibold mb-2 text-blue-600">
+        {recruitment.position}
+      </h3>
+      <p className="text-gray-700 mb-2">{recruitment.description}</p>
+      <p className="text-gray-700 mb-2">{recruitment.requirements}</p>
+      <p className="text-gray-500">Posted Date: {recruitment.postedDate}</p>
     </div>
   );
 };
