@@ -1,12 +1,11 @@
 "use client";
 import "./globals.css";
-// import type { Metadata } from 'next'
-import { useAmp } from "next/amp";
 import { Inter } from "next/font/google";
 import { useEffect, useState } from "react";
 import Loader from "../../components/loader/loader";
-import Footer from "../../components/footer/footer";
+import { Footer } from "../../components/footer/footer";
 import { NavBar } from "../../components/header/header";
+import { ToastContainer } from "react-toastify";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -38,6 +37,7 @@ export default function RootLayout({
               <NavBar />
               <div>{children}</div>
               <Footer />
+              <ToastContainer />
             </div>
           )}
         </div>

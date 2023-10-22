@@ -1,6 +1,10 @@
 import { Link, Button } from "@nextui-org/react";
 import { Navbar, NavbarContent, NavbarItem } from "@nextui-org/navbar";
 import { useState } from "react";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+export const headerHeight = 70;
 
 export const NavBar = () => {
   const [activeItem, setActiveItem] = useState(0);
@@ -10,9 +14,17 @@ export const NavBar = () => {
     boxShadow: "0 5px 5px rgba(255, 255, 255, 0.5)",
   };
 
+  const notify = () => {
+    toast.success("This function is not available yet", {
+      position: "bottom-right",
+      pauseOnHover: false,
+      autoClose: 2000, // Close the toast after 2 seconds
+    });
+  };
+
   return (
     <div
-      className="z-50 bg-gray-900 text-white pl-10 sticky top-0 shadow-xl"
+      className={`z-50 bg-gray-900 text-white pl-10 sticky top-0 shadow-xl h-[${headerHeight}px]`}
       style={shadowStyle}
     >
       <Navbar
@@ -51,12 +63,14 @@ export const NavBar = () => {
             }`}
           >
             <Link
-              href="#aboutus"
+              href="#aboutgame"
               aria-current="page"
               className="nav-link"
-              onClick={() => setActiveItem(0)}
+              onClick={() => {
+                setActiveItem(0);
+              }}
             >
-              About Us
+              About Game
             </Link>
           </NavbarItem>
           <NavbarItem
@@ -69,11 +83,11 @@ export const NavBar = () => {
           >
             <Link
               className="hover:text-yellow-500"
-              href="#countdown"
+              href="#aboutus"
               aria-current="page"
               onClick={() => setActiveItem(1)}
             >
-              Countdown
+              About Us
             </Link>
           </NavbarItem>
           <NavbarItem
@@ -114,10 +128,8 @@ export const NavBar = () => {
           <NavbarItem>
             <Button
               color="primary"
-              className="rounded-full bg-blue-600 text-white px-4 py-1.5  hover:bg-blue-700"
-              onClick={() => {
-                console.log("clicked");
-              }}
+              className="bg-white text-gray-900 px-4 py-1.5 font-semibold rounded-full hover:bg-gray-100"
+              onClick={notify}
               variant="bordered"
             >
               <div className="text-base">Join Us</div>

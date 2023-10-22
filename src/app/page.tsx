@@ -1,9 +1,10 @@
 "use client";
 
 import "@/app/globals.css";
-import { AboutUs } from "./about-us/about-us";
-import { IntroBanner, IntroVideo } from "./about-us/intro-banner";
+import { AboutGame } from "./about-us/about-us";
+import { IntroVideo } from "./about-us/intro-banner";
 import Countdown from "../../components/countdown/Countdown";
+import { AboutUs } from "./about-us/our-team";
 
 export default function Home() {
   return (
@@ -11,6 +12,7 @@ export default function Home() {
       {/* <Countdown /> */}
       <IntroVideo />
       <div className="mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10 {inter.className}">
+        <AboutGame />
         <AboutUs />
       </div>
     </div>

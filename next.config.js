@@ -2,7 +2,12 @@
 const nextConfig = {
   images: {
     // Temporary use this, remove later
-    domains: ["images4.alphacoders.com", "assets.gamepur.com"],
+    domains: [
+      "images.squarespace-cdn.com",
+      "images3.alphacoders.com",
+      "images6.alphacoders.com",
+      "images7.alphacoders.com",
+    ],
   },
 };
 
