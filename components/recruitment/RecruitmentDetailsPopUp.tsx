@@ -7,7 +7,6 @@ interface Recruitment {
   description: string;
   requirements: string;
   postedDate: string;
-  // Add other properties as needed
 }
 
 interface Props {
