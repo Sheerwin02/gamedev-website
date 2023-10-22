@@ -1,0 +1,75 @@
+###
+# GET Users Request Test
+###
+
+# Request
+GET http://localhost:3000/api/users
+Content-Type: application/json
+
+###
+# GET User by ID Request Test
+###
+
+@id = 6
+
+# Request
+GET http://localhost:3000/api/users/{{id}}
+Content-Type: application/json
+
+###
+# POST User Request Test
+###
+
+# Request
+POST http://localhost:3000/api/user
+Content-Type: application/json
+
+{
+  "name": "Sheerwin",
+  "phoneNumber": "012345678",
+  "password": "Hana123",
+  "email": "sheerwin@examples9.com",
+  "enabled": 1
+}
+
+###
+# PUT User Request Test
+###
+
+# Request
+PUT http://localhost:3000/api/users/{{id}}
+Content-Type: application/json
+
+{
+  "name": "Updated Sheerwin",
+  "phoneNumber": "987-654-3210",
+  "password": "updatedpassword4567",
+  "email": "sheerwin@examples9.com",
+  "enabled": 0
+}
+
+###
+# DELETE User Request Test
+###
+
+# Request
+DELETE http://localhost:3000/api/users/{{id}}
+Content-Type: application/json
+
+###
+# Enable User Request Test
+###
+# Request
+PATCH http://localhost:3000/api/users/{{id}}/enable
+Content-Type: application/json
+
+###
+# Disable User Request Test
+###
+
+# Request
+PATCH http://localhost:3000/api/users/{{id}}/disable
+Content-Type: application/json
+
+
+
