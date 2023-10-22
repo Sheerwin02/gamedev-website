@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "u700434685_hanaStudio",
+    "password": "H@naStudi0@123",
+    "database": "u700434685_Hana_Studio",
+    "host": "156.67.222.103",
+    "dialect": "mysql"
+  },
+  "test": {
+    "username": "root",
+    "password": null,
+    "database": "database_test",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "root",
+    "password": null,
+    "database": "database_production",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  }
+}
