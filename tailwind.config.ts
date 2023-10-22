@@ -1,9 +1,12 @@
 import type { Config } from 'tailwindcss'
 
+import defaultTheme from 'tailwindcss/defaultTheme'
+
 const config: Config = {
   content: [
-    './pages/**/*.tsx',
-    './components/**/*.tsx',
+    './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
+    './components/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/app/**/*.{js,ts,jsx,tsx,mdx, css}',
   ],
   theme: {
     extend: {
@@ -12,8 +15,15 @@ const config: Config = {
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
+      fontFamily: {
+        sans: ['Roboto', ...defaultTheme.fontFamily.sans],
+      },
     },
+  },
+  variants: {
+    extend: {},
   },
   plugins: [],
 }
+
 export default config
