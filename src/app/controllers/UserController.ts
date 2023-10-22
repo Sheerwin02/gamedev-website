@@ -71,4 +71,24 @@ export class UserController extends ControllerBase {
       this.handleError(error, res);
     }
   }
+
+  public async enableSubscription(req: NextApiRequest, res: NextApiResponse) {
+    const { id } = req.query;
+    try {
+      const enabledUser = await userRepository.enable(Number(id));
+      res.status(200).json(enabledUser);
+    } catch (error) {
+      this.handleError(error, res);
+    }
+  }
+
+  public async disableSubscription(req: NextApiRequest, res: NextApiResponse) {
+    const { id } = req.query;
+    try {
+      const disabledUser = await userRepository.disable(Number(id));
+      res.status(200).json(disabledUser);
+    } catch (error) {
+      this.handleError(error, res);
+    }
+  }
 }

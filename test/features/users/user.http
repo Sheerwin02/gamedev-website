@@ -10,7 +10,7 @@ Content-Type: application/json
 # GET User by ID Request Test
 ###
 
-@id = 2
+@id = 6
 
 # Request
 GET http://localhost:3000/api/users/{{id}}
@@ -28,7 +28,7 @@ Content-Type: application/json
   "name": "Sheerwin",
   "phoneNumber": "012345678",
   "password": "Hana123",
-  "email": "sheerwin@examples1.com",
+  "email": "sheerwin@examples9.com",
   "enabled": 1
 }
 
@@ -41,10 +41,10 @@ PUT http://localhost:3000/api/users/{{id}}
 Content-Type: application/json
 
 {
-  "name": "Updated User",
+  "name": "Updated Sheerwin",
   "phoneNumber": "987-654-3210",
   "password": "updatedpassword4567",
-  "email": "sheerwin@examples.com",
+  "email": "sheerwin@examples9.com",
   "enabled": 0
 }
 
@@ -55,3 +55,21 @@ Content-Type: application/json
 # Request
 DELETE http://localhost:3000/api/users/{{id}}
 Content-Type: application/json
+
+###
+# Enable User Request Test
+###
+# Request
+PATCH http://localhost:3000/api/users/{{id}}/enable
+Content-Type: application/json
+
+###
+# Disable User Request Test
+###
+
+# Request
+PATCH http://localhost:3000/api/users/{{id}}/disable
+Content-Type: application/json
+
+
+
