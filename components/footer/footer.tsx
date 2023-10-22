@@ -57,7 +57,7 @@ export const Footer = () => {
             />
           </div>
         </div>
-        <p className="mt-2 text-gray-300">&copy; Copyright 2023 ABC Studio</p>
+        <p className="mt-2 text-gray-300">&copy; Copyright 2023 Hana Studio</p>
       </div>
     </footer>
   );

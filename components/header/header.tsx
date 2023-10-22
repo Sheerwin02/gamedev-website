@@ -14,14 +14,6 @@ export const NavBar = () => {
     boxShadow: "0 5px 5px rgba(255, 255, 255, 0.5)",
   };
 
-  const notify = () => {
-    toast.success("This function is not available yet", {
-      position: "bottom-right",
-      pauseOnHover: false,
-      autoClose: 2000, // Close the toast after 2 seconds
-    });
-  };
-
   return (
     <div
       className={`z-50 bg-gray-900 text-white pl-10 sticky top-0 shadow-xl h-[${headerHeight}px]`}
@@ -129,7 +121,9 @@ export const NavBar = () => {
             <Button
               color="primary"
               className="bg-white text-gray-900 px-4 py-1.5 font-semibold rounded-full hover:bg-gray-100"
-              onClick={notify}
+              onClick={() => {
+                console.log("Clicked");
+              }}
               variant="bordered"
             >
               <div className="text-base">Join Us</div>
