@@ -1,6 +1,6 @@
 // TODO: Move to components/Countdown.tsx
 import React, { useEffect, useState } from "react";
-import { TimerContainer } from "../../../components/countdown/TimerContainer";
+import { TimerContainer } from "./TimerContainer";
 
 const Countdown = () => {
   // TODO: Sheerwin - Change to expected launch date
