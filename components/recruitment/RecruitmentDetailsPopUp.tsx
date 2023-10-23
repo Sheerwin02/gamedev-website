@@ -22,34 +22,26 @@ const RecruitmentDetailsPopup: React.FC<Props> = ({ recruitment, onClose }) => {
   return (
     <>
       <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
-        <div className="relative w-full max-w-3xl p-6 mx-4 overflow-hidden bg-white rounded-lg shadow-xl transform scale-105 hover:scale-100 transition-transform">
+        <div className="relative w-full max-w-3xl p-6 mx-4 overflow-hidden bg-gray-900 rounded-lg shadow-xl transform scale-105 hover:scale-100 transition-transform text-white">
           <div className="p-4">
             {/* Render details of the selected recruitment */}
-            <h3 className="text-3xl font-bold text-gray-800 mb-4">
-              {recruitment.position}
-            </h3>
-            <p className="text-gray-600 text-lg mb-2">
-              {recruitment.description}
-            </p>
-            <p className="text-gray-600 text-lg mb-2">
-              {recruitment.requirements}
-            </p>
-            <p className="text-gray-500 mb-4">
-              Posted Date: {recruitment.postedDate}
-            </p>
+            <h3 className="text-3xl font-bold mb-4">{recruitment.position}</h3>
+            <p className="text-lg mb-2">{recruitment.description}</p>
+            <p className="text-lg mb-2">{recruitment.requirements}</p>
+            <p className="mb-4">Posted Date: {recruitment.postedDate}</p>
           </div>
 
           {/* Add the "Describe your passion in gaming" text field */}
           <div className="p-4">
-            <label className="block text-gray-700 text-lg mb-2">
+            <label className="block text-lg mb-2">
               Tell us your passion in gaming!
             </label>
             <textarea
               rows={4}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 text-gray-700"
+              className="w-full px-3 py-2 border border-gray-600 bg-gray-800 text-gray-200 rounded-lg focus:outline-none focus:border-blue-500"
               placeholder="Write here..."
             ></textarea>
-            <div className="text-lg text-gray-700 mb-2">
+            <div className="text-lg text-gray-200 mb-2">
               Upload your resume here!
             </div>
           </div>
