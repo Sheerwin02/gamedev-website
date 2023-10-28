@@ -1,7 +1,7 @@
 ###
 # GET Request Test
 ###
-@id = 1
+@id = 2
 @base_url = "http://localhost:3000/api/recruitments"
 
 # Request
@@ -25,9 +25,9 @@ POST http://localhost:3000/api/recruitment
 Content-Type: application/json
 
 {
-  "position": "Software Engineer",
-  "description": "Join our team!",
-  "requirement": "Experience with web development",
+  "position": "Test",
+  "description": "TESTING FROM SHEERWIN",
+  "requirement": "Positive Test",
   "postedDate": "2023-10-13"
 }
 

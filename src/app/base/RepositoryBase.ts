@@ -3,8 +3,8 @@ import DbHelper from '../db/DbHelper';
 import { CustomError, ErrorType } from '../db/errorHelper';
 
 class RepositoryBase<T extends Model> {
-    private readonly sequelize: Sequelize;
-    private readonly model: ModelStatic<T>;
+    protected readonly sequelize: Sequelize;
+    protected readonly model: ModelStatic<T>;
 
 constructor(model: ModelStatic<T>) {
     this.sequelize = DbHelper.getInstance().getSequelize();
