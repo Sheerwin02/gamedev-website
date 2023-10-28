@@ -16,6 +16,8 @@
   }
 }
 
+html { scroll-behavior: smooth; }
+
 body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
@@ -24,4 +26,8 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
+}
+
+.custom-class:hover .social-svg-icon {
+  fill: lightgray !important;
 }

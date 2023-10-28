@@ -10,10 +10,10 @@ export const NumberBox = ({ num, unit, flip }: numProp) => {
   return (
     <div className="flex flex-col items-center mt-4 px-2">
       <div className="relative bg-transparent flex flex-col items-center justify-center rounded-lg w-32 h-32 text-2xl md:text-4xl mt-4 ">
-        <div className="rounded-t-lg rounded-b-lg bg-[#8E93DC] w-full h-full"></div>
+        <div className="rounded-t-full bg-[#8E93DC] w-full h-full"></div>
 
         <div
-          className={`border-4 rounded-lg w-32 h-32 absolute top-0 left-0 ${
+          className={`border-4 rounded-full w-32 h-32 absolute top-0 left-0 ${
             flip ? "animate-pulse border-red-700" : "border-transparent"
           }`}
         ></div>
@@ -22,10 +22,10 @@ export const NumberBox = ({ num, unit, flip }: numProp) => {
           {num}
         </div>
 
-        <div className=" rounded-b-lg rounded-t-lg bg-[#242f48] w-full h-full"></div>
+        <div className=" rounded-b-full bg-[#242f48] w-full h-full"></div>
 
         <div
-          className={`border-4 border-blue-700 border-b-0 absolute  w-full h-1/2 top-0  rounded-t-lg z-5 ${
+          className={`border-4 border-blue-700 border-b-0 absolute  w-full h-1/2 top-0  rounded-t-full z-5 ${
             flip
               ? " animate-pulse border-blue 700 bg-[#5eb8c4]"
               : "border-transparent"
