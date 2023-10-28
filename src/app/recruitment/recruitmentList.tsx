@@ -1,6 +1,5 @@
 import React from "react";
 import RecruitmentList from "../../../components/recruitment/RecruitmentList";
-import { Parallax, ParallaxProvider } from "react-scroll-parallax";
 
 const Recruitments: React.FC = () => {
   return (
@@ -10,17 +9,12 @@ const Recruitments: React.FC = () => {
         <p className="text-xl mb-8">Discover Exciting Career Opportunities</p>
       </div>
 
-      {/* Parallax section */}
-      <ParallaxProvider>
-        <Parallax speed={-5}>
-          <div className="bg-gray-800 p-8 rounded-lg shadow-xl text-center text-white mt-12">
-            <h2 className="text-3xl font-semibold text-blue-500 mb-4">
-              Current Openings
-            </h2>
-            <RecruitmentList />
-          </div>
-        </Parallax>
-      </ParallaxProvider>
+      <div className="bg-gray-800 p-8 rounded-lg shadow-xl text-center text-white mt-12">
+        <h2 className="text-3xl font-semibold text-blue-500 mb-4">
+          Current Openings
+        </h2>
+        <RecruitmentList />
+      </div>
     </div>
   );
 };
