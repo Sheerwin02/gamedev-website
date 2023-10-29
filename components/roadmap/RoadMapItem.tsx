@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
+import { statusColors } from "./resources/roadmapStatusColour";
 
 interface RoadMapItemProps {
   title: string;
   description: string;
-  difficulty: string;
+  status: string;
   duration: string;
   imageUrl: string;
   isExpanded: boolean;
@@ -13,12 +14,15 @@ interface RoadMapItemProps {
 const RoadMapItem: React.FC<RoadMapItemProps> = ({
   title,
   description,
-  difficulty,
+  status,
   duration,
   imageUrl,
   isExpanded,
   onClick,
 }) => {
+  // Get the color class based on the status
+  const statusColorClass = statusColors[status] || "text-gray-500";
+
   return (
     <div
       className={`mb-6 p-4 rounded-lg border border-purple-300 overflow-hidden transition-transform transform mx-auto cursor-pointer focus:outline-none ${
@@ -50,8 +54,10 @@ const RoadMapItem: React.FC<RoadMapItemProps> = ({
           <p className="text-gray-600 mb-3 text-lg">{description}</p>
           <div className="flex justify-between text-sm text-gray-600 mb-2">
             <p>
-              <span className="font-semibold text-blue-500">Difficulty:</span>{" "}
-              {difficulty}
+              <span className={`font-semibold ${statusColorClass}`}>
+                Status:
+              </span>{" "}
+              {status}
             </p>
             <p>
               <span className="font-semibold text-blue-500">Duration:</span>{" "}

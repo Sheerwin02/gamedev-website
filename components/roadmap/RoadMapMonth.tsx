@@ -2,17 +2,18 @@ import React, { useState } from "react";
 import RoadMapItem from "./RoadMapItem";
 
 interface RoadMapMonthProps {
+  year: number;
   month: string;
   data: Array<{
     title: string;
     description: string;
-    difficulty: string;
+    status: string;
     duration: string;
     imageUrl: string;
   }>;
 }
 
-const RoadMapMonth: React.FC<RoadMapMonthProps> = ({ month, data }) => {
+const RoadMapMonth: React.FC<RoadMapMonthProps> = ({ year, month, data }) => {
   const [expandedItemIndex, setExpandedItemIndex] = useState<number | null>(
     null
   );
@@ -39,7 +40,7 @@ const RoadMapMonth: React.FC<RoadMapMonthProps> = ({ month, data }) => {
           >
             <circle cx="4" cy="4" r="4" />
           </svg>
-          {month}
+          {month} {year}
         </h2>
 
         {data.map((item, index) => (
@@ -47,7 +48,7 @@ const RoadMapMonth: React.FC<RoadMapMonthProps> = ({ month, data }) => {
             key={index}
             title={item.title}
             description={item.description}
-            difficulty={item.difficulty}
+            status={item.status}
             duration={item.duration}
             imageUrl={item.imageUrl}
             isExpanded={expandedItemIndex === index}
