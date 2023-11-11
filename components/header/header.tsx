@@ -3,15 +3,26 @@ import { Navbar, NavbarContent, NavbarItem } from "@nextui-org/navbar";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import LoginPage from "../login/login";
 
 export const headerHeight = 70;
 
 export const NavBar = () => {
   const [activeItem, setActiveItem] = useState(0);
+  const [isLoginDialogOpen, setIsLoginDialogOpen] = useState(false);
 
   // Define your custom border bottom shadow
   const shadowStyle = {
     boxShadow: "0 5px 5px rgba(255, 255, 255, 0.5)",
+  };
+
+  // Open & Close login dialog
+  const openLoginDialog = () => {
+    setIsLoginDialogOpen(true);
+  };
+
+  const closeLoginDialog = () => {
+    setIsLoginDialogOpen(false);
   };
 
   return (
@@ -121,16 +132,29 @@ export const NavBar = () => {
             <Button
               color="primary"
               className="bg-white text-gray-900 px-4 py-1.5 font-semibold rounded-full hover:bg-gray-100"
-              onClick={() => {
-                console.log("Clicked");
-              }}
+              onClick={openLoginDialog}
               variant="bordered"
             >
-              <div className="text-base">Join Us</div>
+              <div className="text-base">Login</div>
             </Button>
           </NavbarItem>
         </NavbarContent>
       </Navbar>
+      {isLoginDialogOpen && (
+        <div className="fixed inset-0 flex items-center justify-center z-50">
+          <div className="bg-transparent w-4/12 relative">
+            <div className="absolute right-0 bottom-60">
+              <div
+                className="cursor-pointer text-white text-4xl"
+                onClick={closeLoginDialog}
+              >
+                &times;
+              </div>
+            </div>
+            <LoginPage />
+          </div>
+        </div>
+      )}
     </div>
   );
 };

@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { headerHeight } from "../../../components/header/header";
+import { headerHeight } from "../header/header";
 
 export const AboutUs = () => {
   return (

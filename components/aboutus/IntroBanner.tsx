@@ -11,7 +11,11 @@
 //   );
 // };
 
+import { useRouter } from "next/router";
+
 export const IntroVideo = () => {
+  const router = useRouter();
+
   return (
     <div className="relative w-full h-[30rem]">
       <video
@@ -31,10 +35,12 @@ export const IntroVideo = () => {
           <button
             className="mt-7 px-8 py-4 bg-black text-white text-xl font-semibold rounded-xl hover:bg-blue-800"
             onClick={() => {
-              window.open(
-                "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-                "_blank"
-              );
+              router.push("/error?errorCode=404");
+
+              // window.open(
+              //   "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+              //   "_blank"
+              // );
             }}
           >
             WATCH TRAILER
