@@ -34,7 +34,7 @@ class User extends ModelBase {
           args: [['email', 'deletedAt']],
           msg: 'Email address is already in use or soft-deleted.',
         },
-      },
+      },      
       enabled: {
         type: DataTypes.INTEGER,
         allowNull: false,
