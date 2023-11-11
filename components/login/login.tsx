@@ -49,7 +49,7 @@ const LoginPage: React.FC<LoginPageProps> = () => {
   };
 
   return (
-    <div className="flex items-center justify-center h-screen text-white">
+    <div className="flex items-center justify-center text-white">
       <div className="p-8 bg-gray-800 rounded-md shadow-md w-96">
         <h1 className="text-3xl mb-6 font-semibold text-center">
           Welcome Back!
