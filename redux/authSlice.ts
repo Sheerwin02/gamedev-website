@@ -1,6 +1,7 @@
 // redux/authSlice.ts
 
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSelector, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { RootState } from './store';
 
 interface AuthState {
   token: string | null;
@@ -21,4 +22,13 @@ const authSlice = createSlice({
 });
 
 export const { setToken } = authSlice.actions;
+// Selector to get the token from the state
+
+const selectAuth = (state: RootState) => state.auth;
+
+export const selectToken = createSelector(
+  selectAuth,
+  (auth) => auth.token
+);
+
 export default authSlice.reducer;
