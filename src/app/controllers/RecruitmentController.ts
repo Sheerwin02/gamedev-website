@@ -1,6 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { ControllerBase } from '../base/ControllerBase';
 import RecruitmentRepository from '../repositories/RecruitmentRepository';
+import { verifyToken } from '../../../utils/auth';
 
 const recruitmentRepository = RecruitmentRepository.getInstance();
 
@@ -21,6 +22,7 @@ export class RecruitmentController extends ControllerBase {
   public async getRecruitmentById(req: NextApiRequest, res: NextApiResponse) {
     const { id } = req.query;
     try {
+      await verifyToken(req, res);
       const recruitment = await recruitmentRepository.getById(Number(id));
       if (recruitment) {
         res.status(200).json(recruitment);
@@ -34,6 +36,7 @@ export class RecruitmentController extends ControllerBase {
 
   public async createRecruitment(req: NextApiRequest, res: NextApiResponse) {
     try {
+      await verifyToken(req, res);
       const { position, description, requirement, postedDate } = req.body;
       const recruitment = await recruitmentRepository.create({
         position,
