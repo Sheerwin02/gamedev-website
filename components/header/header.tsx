@@ -2,6 +2,7 @@ import { Link, Button } from "@nextui-org/react";
 import { Navbar, NavbarContent, NavbarItem } from "@nextui-org/navbar";
 import { useState } from "react";
 import "react-toastify/dist/ReactToastify.css";
+import LoginPage from "../login/login";
 
 export const headerHeight = 70;
 
@@ -19,25 +20,6 @@ export const NavBar = ({
 
   // Login dialog
   const [isLoginDialogOpen, setIsLoginDialogOpen] = useState(false);
-
-  // Hide navbar on scroll down
-  // const [scrolling, setScrolling] = useState(false);
-
-  // useEffect(() => {
-  //   const handleScroll = () => {
-  //     if (window.scrollY > 50) {
-  //       setScrolling(true);
-  //     } else {
-  //       setScrolling(false);
-  //     }
-  //   };
-
-  //   window.addEventListener("scroll", handleScroll);
-
-  //   return () => {
-  //     window.removeEventListener("scroll", handleScroll);
-  //   };
-  // }, []);
 
   // Define your custom border bottom shadow
   const shadowStyle = {
@@ -159,32 +141,10 @@ export const NavBar = ({
         </NavbarContent>
         <NavbarContent justify="end">
           <NavbarItem>
-            <Button
-              color="primary"
-              className="bg-white text-gray-900 px-4 py-1.5 font-semibold rounded-full hover:bg-gray-100"
-              onClick={openLoginDialog}
-              variant="bordered"
-            >
-              <div className="text-base">Login</div>
-            </Button>
+            <LoginPage />
           </NavbarItem>
         </NavbarContent>
       </Navbar>
-      {/* {isLoginDialogOpen && (
-        <div className="fixed inset-0 flex items-center justify-center z-50">
-          <div className="bg-transparent w-4/12 relative">
-            <div className="absolute right-0 bottom-60">
-              <div
-                className="cursor-pointer text-white text-4xl"
-                onClick={closeLoginDialog}
-              >
-                &times;
-              </div>
-            </div>
-            <LoginPage />
-          </div>
-        </div>
-      )} */}
     </div>
   );
 };

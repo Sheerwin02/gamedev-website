@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Toast from "./toast";
 import { useDispatch, useSelector } from "react-redux";
 import { setToken } from "../../redux/authSlice";
 import { selectToken } from "../../redux/authSlice";
+import { useRouter } from "next/router";
 
 interface LoginPageProps {}
 
@@ -15,6 +16,9 @@ const LoginPage: React.FC<LoginPageProps> = () => {
 
   const dispatch = useDispatch();
   const authToken = useSelector(selectToken);
+
+  const router = useRouter();
+  const dialogRef = useRef<HTMLDivElement>(null);
 
   const handleLogin = async () => {
     try {
@@ -50,39 +54,65 @@ const LoginPage: React.FC<LoginPageProps> = () => {
   };
 
   useEffect(() => {
-    if (showToast) {
-      const timerId = setTimeout(() => {
+    const handleOutSideClick = (event: MouseEvent) => {
+      if (!dialogRef.current?.contains(event.target as Node)) {
+        setIsDropdownOpen(false);
+      }
+    };
+
+    const handleTimeout = () => {
+      if (showToast) {
         setShowToast(false);
         setToastMessage("");
-      }, 5000);
+      }
+    };
 
-      return () => clearTimeout(timerId);
-    }
+    window.addEventListener("mousedown", handleOutSideClick);
+    const timerId = setTimeout(handleTimeout, 5000);
+
+    return () => {
+      window.removeEventListener("mousedown", handleOutSideClick);
+      clearTimeout(timerId);
+    };
   }, [showToast]);
 
+  // useEffect(() => {
+  //   if (showToast) {
+  //     const timerId = setTimeout(() => {
+  //       setShowToast(false);
+  //       setToastMessage("");
+  //     }, 5000);
+
+  //     return () => clearTimeout(timerId);
+  //   }
+  // }, [showToast]);
+
   return (
-    <div className="flex items-center justify-center text-gray-800">
-      <div className="relative">
+    <div
+      className="flex items-center justify-center opacity-100"
+      ref={dialogRef}
+    >
+      <div className="relative z-50">
         <button
-          className="text-gray-800 p-4 focus:outline-none"
+          className="text-white font-semibold p-4 focus:outline-none"
           onClick={() => setIsDropdownOpen(!isDropdownOpen)}
         >
           {authToken ? (
             <>
               <span>{`Logged in as ${email}`}</span> <br />
-              <button
+              {/* <button
                 className="text-indigo-500 hover:underline"
                 onClick={handleLogout}
               >
                 Log Out
-              </button>
+              </button> */}
             </>
           ) : (
             "Login"
           )}
         </button>
         {isDropdownOpen && (
-          <div className="absolute top-0 right-0 mt-12 w-64">
+          <div className="absolute top-0 right-0 mt-12 w-min-[16rem] w-max-fit">
             <div className="p-4 bg-white rounded-md shadow-md">
               <h1 className="text-xl mb-4 font-semibold text-center text-gray-800">
                 {authToken ? `Welcome, ${email}!` : "Login"}
@@ -101,7 +131,7 @@ const LoginPage: React.FC<LoginPageProps> = () => {
                     handleLogin();
                   }}
                 >
-                  <div className="mb-4">
+                  <div className="mb-4 w-64">
                     <label
                       className="block text-sm font-medium mb-2 text-gray-800"
                       htmlFor="email"
