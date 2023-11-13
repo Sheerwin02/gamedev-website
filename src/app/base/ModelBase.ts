@@ -8,11 +8,9 @@ class ModelBase extends Model {
       primaryKey: true,
     };
 
-    return this.init(attributes, { modelName, sequelize, ...options });
-  }
+    const model = this.init(attributes, { modelName, sequelize, ...options });
 
-  static setupAssociations(models: Record<string, typeof Model>) {
-    // Define associations for the model, if any
+    return model;
   }
 }
 

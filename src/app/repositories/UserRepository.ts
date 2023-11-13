@@ -29,6 +29,23 @@ class UserRepository extends RepositoryBase<User> {
     return this.toggleEnable(id, 0, options);
   }
 
+  async getByEmail(email: string, options?: { transaction: Transaction }): Promise<User | null> {
+    const t: Transaction = options?.transaction || await this.sequelize.transaction();
+  
+    try {
+      const user = await this.model.findOne({
+        where: { email },
+        transaction: options?.transaction || t,
+      });
+  
+      if (!options?.transaction) await t.commit();
+      return user;
+    } catch (error) {
+      if (!options?.transaction) await t.rollback();
+      throw new CustomError(ErrorType.InternalServerError, 'Internal server error');
+    }
+  }
+  
   private async toggleEnable(id: number, value: number, options?: { transaction: Transaction }): Promise<User> {
     const t: Transaction = options?.transaction || await this.sequelize.transaction();
 

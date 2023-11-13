@@ -1,0 +1,43 @@
+
+{
+    "2023": {
+      "October": [
+        {
+          "title": "Game Website",
+          "description": 
+          "The website will introduce our game and be portal between Hana Studio Team and the players.",
+          "status": "In Progress",
+          "duration": "6 sprints - Start from 1/10/2023",
+          "imageUrl": "https://i.pinimg.com/736x/63/a0/aa/63a0aafd467111f777ed305d22a8b3cb.jpg"
+        },
+        {
+          "title": "IGDA Game Jam 2023",
+          "description": "Started research on Godot Engine and game development. Completed a mini tutorial with Godot Engine.",
+          "status": "Completed",
+          "duration": "1 day - 21/10/2023",
+          "imageUrl": "https://th.bing.com/th/id/OIP.khZLU_v-OkHps3by98QKTQHaHa?pid=ImgDet&rs=1"
+        }
+      ],
+      "December": [
+        {
+          "title": "Research on Game Development and Idea Generation",
+          "description": "Started research on Godot Engine and game development. Brainstormed ideas for the game.",
+          "status": "Not Started",
+          "duration": "Continuous",
+          "imageUrl": "https://gaminguardian.com/wp-content/uploads/2019/08/Atelier-Ryza.jpg"
+        }
+      ]
+    },
+    "2024": {
+      "January": [
+
+      ],
+      "February": [
+
+      ],
+      "March": [
+ 
+      ]
+    }
+  }
+  
