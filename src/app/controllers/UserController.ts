@@ -4,8 +4,6 @@ import { ControllerBase } from '../base/ControllerBase';
 import UserRepository from '../repositories/UserRepository';
 import { generateToken, verifyToken } from '../../../utils/auth';
 
-// Access the JWT_SECRET from the environment variables
-const jwtSecret = process.env.JWT_SECRET || 'default-secret-key';
 const userRepository = UserRepository.getInstance();
 
 export class UserController extends ControllerBase {

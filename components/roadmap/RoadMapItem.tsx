@@ -20,7 +20,6 @@ const RoadMapItem: React.FC<RoadMapItemProps> = ({
   isExpanded,
   onClick,
 }) => {
-  // Get the color class based on the status
   const statusColorClass = statusColors[status] || "text-gray-500";
 
   return (
@@ -48,7 +47,9 @@ const RoadMapItem: React.FC<RoadMapItemProps> = ({
           />
         )}
       </div>
-      <div className="text-xl font-semibold mb-3 text-purple-900">{title}</div>
+      <div className="text-xl font-semibold mb-3 text-purple-900 hover:text-green-500">
+        {title}
+      </div>
       {isExpanded && (
         <div>
           <p className="text-gray-600 mb-3 text-lg">{description}</p>
