@@ -7,6 +7,8 @@ const nextConfig = {
       "images3.alphacoders.com",
       "images6.alphacoders.com",
       "images7.alphacoders.com",
+      "hanastudio.io",
+      "i.imgur.com",
     ],
   },
 };

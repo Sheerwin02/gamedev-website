@@ -61,7 +61,7 @@ const LoginPage: React.FC<LoginPageProps> = () => {
   }, [showToast]);
 
   return (
-    <div className="flex items-center justify-center h-screen text-gray-800">
+    <div className="flex items-center justify-center text-gray-800">
       <div className="relative">
         <button
           className="text-gray-800 p-4 focus:outline-none"

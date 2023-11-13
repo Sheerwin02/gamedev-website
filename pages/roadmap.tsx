@@ -1,5 +1,5 @@
 import React from "react";
-import RoadMapSection from "../../../../components/roadmap/RoadMapSection";
+import RoadMapSection from "../components/roadmap/RoadMapSection";
 
 const RoadMap: React.FC = () => {
   return (
