@@ -1,5 +1,5 @@
 import React from "react";
-import RecruitmentList from "../../../components/recruitment/RecruitmentList";
+import RecruitmentList from "./RecruitmentList";
 
 const Recruitments: React.FC = () => {
   return (
