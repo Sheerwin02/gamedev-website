@@ -1,6 +1,7 @@
-import { DataTypes, Sequelize } from 'sequelize';
+import { DataTypes, Model, Sequelize } from 'sequelize';
 import ModelBase from '../base/ModelBase';
 import bcrypt from 'bcrypt';
+import { RecruitmentApplicant } from './RecruitmentApplicant';
 
 class User extends ModelBase {
   public id!: number;
@@ -34,7 +35,7 @@ class User extends ModelBase {
           args: [['email', 'deletedAt']],
           msg: 'Email address is already in use or soft-deleted.',
         },
-      },
+      },      
       enabled: {
         type: DataTypes.INTEGER,
         allowNull: false,
@@ -85,11 +86,10 @@ class User extends ModelBase {
       },
     };
 
-    return this.initializeModel('User', attributes, options, sequelize);
-  }
+    const User =  this.initializeModel('User', attributes, options, sequelize);
+    // User.hasMany(RecruitmentApplicant, { foreignKey: 'user_id' });
 
-  static associate(models: any) {
-    // Define associations for the User model, if any
+    return User;
   }
 }
 

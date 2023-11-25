@@ -25,7 +25,7 @@ POST http://localhost:3000/api/recruitment
 Content-Type: application/json
 
 {
-  "position": "Test",
+  "position": "Test 2",
   "description": "TESTING FROM SHEERWIN",
   "requirement": "Positive Test",
   "postedDate": "2023-10-13"

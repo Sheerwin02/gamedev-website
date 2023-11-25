@@ -16,19 +16,17 @@ const RecruitmentList: React.FC = () => {
     []
   );
   const [selectedRecruitment, setSelectedRecruitment] =
-    useState<Recruitment | null>(null); // State to manage selected recruitment
+    useState<Recruitment | null>(null);
   const router = useRouter();
 
   useEffect(() => {
-    // Check if we're on the client side before using the router
     if (typeof window !== "undefined") {
-      // Fetch data from your API
-      fetch("/api/recruitment") // Updated URL to match the file path
+      fetch("/api/recruitment")
         .then((response) => response.json())
         .then((data) => setRecruitments(data))
         .catch((error) => console.error("Error fetching data:", error));
     }
-  }, []); // The empty dependency array ensures this effect runs only once on component mount.
+  }, []);
 
   const openDetailsPopup = (recruitment: Recruitment) => {
     setSelectedRecruitment(recruitment);
@@ -43,7 +41,7 @@ const RecruitmentList: React.FC = () => {
       {recruitments?.map((recruitment) => (
         <div
           key={recruitment.id}
-          className="bg-white rounded-lg overflow-hidden cursor-pointer transform transition-transform hover:scale-105 shadow-md hover:shadow-xl border border-gray-300"
+          className="bg-gray-800 rounded-lg overflow-hidden cursor-pointer transform transition-transform hover:scale-105 shadow-md hover:shadow-xl border border-gray-600 text-white"
           onClick={() => openDetailsPopup(recruitment)}
         >
           <RecruitmentItem recruitment={recruitment} />
