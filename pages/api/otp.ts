@@ -9,11 +9,16 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     if (req.method === 'POST') {
       const { action } = req.body;
 
-      // Check the action type
-      if (action === 'sendOtp') {
-        await userController.sendOtp(req, res);
-      } else {
-        res.status(400).json({ error: 'Invalid action type' });
+      // Switch on the action type
+      switch (action) {
+        case 'sendOtp':
+          await userController.sendOtp(req, res);
+          break;
+        case 'verifyOtp':
+          await userController.verifyOtp(req, res);
+          break;
+        default:
+          res.status(400).json({ error: 'Invalid action type' });
       }
     } else {
       res.status(405).end();

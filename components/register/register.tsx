@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import OTP from "./otp";
 import { setToken } from "../../redux/authSlice";
-import Modal from "react-modal";
 import {
   calculatePasswordStrength as calculatePasswordStrengthUtil,
   validateForm,
@@ -16,7 +15,7 @@ const Register: React.FC<RegisterProps> = () => {
   const [name, setName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [email, setEmail] = useState("");
-  const [subscribeNews, setSubscribeNews] = useState<boolean>(false);
+  const [enabled, setEnabled] = useState<number>(0);
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [showToast, setShowToast] = useState(false);
@@ -32,11 +31,6 @@ const Register: React.FC<RegisterProps> = () => {
   const clearErrors = () => {
     setErrors({});
   };
-
-  useEffect(() => {
-    // Set app element for react-modal accessibility
-    Modal.setAppElement("#__next");
-  }, []);
 
   const handleSuccessfulRegistration = async (token: string) => {
     dispatch(setToken(token));
@@ -89,16 +83,18 @@ const Register: React.FC<RegisterProps> = () => {
     }
   };
 
-  const handleOTPVerification = async (otp: string) => {
+  const handleOTPVerification = async (enteredOtp: string) => {
     try {
       // Step 3: Verify OTP
-      const otpVerificationResponse = await fetch("/api/otp/verify", {
+      const otpVerificationResponse = await fetch("/api/otp", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          otp,
+          action: "verifyOtp",
+          email,
+          enteredOtp,
           // Add any additional data needed for OTP verification
         }),
       });
@@ -123,6 +119,7 @@ const Register: React.FC<RegisterProps> = () => {
           phoneNumber,
           email,
           password,
+          enabled,
         }),
       });
 
@@ -140,10 +137,6 @@ const Register: React.FC<RegisterProps> = () => {
       setShowToast(true);
       setToastMessage(`Error during registration: ${(error as Error).message}`);
     }
-  };
-
-  const handleCloseOTP = () => {
-    setShowOTP(false); // Update the state to close the OTP component
   };
 
   const calculatePasswordStrength = () => {
@@ -328,17 +321,20 @@ const Register: React.FC<RegisterProps> = () => {
           <div className="mb-4 flex items-center">
             <input
               type="checkbox"
-              id="subscribeNews"
-              name="subscribeNews"
-              onChange={(e) => setSubscribeNews(e.target.checked)}
-              checked={subscribeNews}
+              id="enabled"
+              name="enabled"
+              onChange={(e) => {
+                setEnabled(e.target.checked ? 1 : 0);
+                console.log("Enabled:", enabled);
+              }}
+              checked={enabled === 1}
               className="mr-2"
             />
             <label
-              htmlFor="subscribeNews"
+              htmlFor="enabled"
               className="text-sm font-medium text-gray-700"
             >
-              Subscribe to News
+              Subscribe to Hana Studio's newsletter
             </label>
           </div>
 
@@ -361,11 +357,12 @@ const Register: React.FC<RegisterProps> = () => {
         </div>
       )}
 
-      {/* React Modal for OTP */}
+      {/* Modal for OTP */}
       {showOTP && (
         <OTP
           onVerify={handleOTPVerification}
           onClose={() => setShowOTP(false)}
+          email={email} // Pass the email to OTP component
         />
       )}
     </div>

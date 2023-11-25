@@ -4,11 +4,14 @@ interface OTPProps {
   onVerify: (otp: string) => void;
   onClose?: () => void;
   onResend?: () => void;
+  email: string;
 }
 
-const OTP: React.FC<OTPProps> = ({ onVerify, onClose, onResend }) => {
+const OTP: React.FC<OTPProps> = ({ onVerify, onClose, onResend, email }) => {
   const [otp, setOTP] = useState(["", "", "", "", "", ""]);
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
+  const [showToast, setShowToast] = useState(false);
+  const [toastMessage, setToastMessage] = useState("");
   const [resendDisabled, setResendDisabled] = useState(false);
   const [resendCountdown, setResendCountdown] = useState(60);
   const inputRefs = useRef<(HTMLInputElement | null)[]>(Array(6).fill(null));
@@ -91,13 +94,23 @@ const OTP: React.FC<OTPProps> = ({ onVerify, onClose, onResend }) => {
       // Call the API for resending OTP
       try {
         // Replace the following line with actual API call
-        // const response = await fetch("/api/resend-otp", {
-        //   method: "POST",
-        //   headers: {
-        //     "Content-Type": "application/json",
-        //   },
-        //   body: JSON.stringify({}),
-        // });
+        const otpResponse = await fetch("/api/otp", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            action: "sendOtp",
+            email,
+          }),
+        });
+
+        if (!otpResponse.ok) {
+          const otpErrorData = await otpResponse.json();
+          setShowToast(true);
+          setToastMessage(`OTP resend failed. Error: ${otpErrorData.error}`);
+          return;
+        }
 
         // Placeholder: Trigger onResend for testing
         onResend && onResend();
