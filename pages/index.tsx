@@ -8,8 +8,14 @@ import { AboutGame } from "../components/aboutus/AboutUs";
 import { AboutUs } from "../components/aboutus/OurTeam";
 import LoginPage from "../components/login/login";
 import Loader from "../components/loader/loader";
-import { NavBar } from "../components/header/header";
+
 import { Footer } from "../components/footer/footer";
+import Register from "../components/register/register";
+import OTP from "../components/register/otp";
+import { Recruitment } from "@/app/models/Recruitment";
+import { NavBar } from "../components/header/Header";
+import Recruitments from "./recruitment";
+import RegisterPage from "./register";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -59,7 +65,10 @@ const Home: React.FC = () => {
           ) : null} */}
           <div>
             {/* <Countdown /> */}
-            <IntroVideo />
+            {/* <Recruitments /> */}
+            {/* <OTP /> */}
+            <RegisterPage />
+            {/* <IntroVideo /> */}
             <div className="mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10 {inter.className}">
               <AboutGame />
               <AboutUs />

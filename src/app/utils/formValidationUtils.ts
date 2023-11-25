@@ -17,7 +17,7 @@ export const validateForm = (name: string, phoneNumber: string, email: string, p
       errors.email = "Invalid email format";
     }
   
-    if (!password.trim()) {
+    if (!password) {
       errors.password = "Password is required";
     } else if (password.length < 6) {
       errors.password = "Password must be at least 6 characters";

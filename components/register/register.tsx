@@ -37,6 +37,9 @@ const Register: React.FC<RegisterProps> = () => {
 
     setShowToast(true);
     setToastMessage("Registration successful");
+    setTimeout(() => {
+      setShowToast(false);
+    }, 5000);
   };
 
   const handleRegister = async () => {
@@ -72,6 +75,9 @@ const Register: React.FC<RegisterProps> = () => {
         const otpErrorData = await otpResponse.json();
         setShowToast(true);
         setToastMessage(`OTP request failed. Error: ${otpErrorData.error}`);
+        setTimeout(() => {
+          setShowToast(false);
+        }, 5000);
         return;
       }
 
@@ -80,6 +86,9 @@ const Register: React.FC<RegisterProps> = () => {
     } catch (error) {
       setShowToast(true);
       setToastMessage(`Error during registration: ${(error as Error).message}`);
+      setTimeout(() => {
+        setShowToast(false);
+      }, 5000);
     }
   };
 
@@ -105,6 +114,9 @@ const Register: React.FC<RegisterProps> = () => {
         setToastMessage(
           `OTP verification failed. Error: ${otpVerificationErrorData.error}`
         );
+        setTimeout(() => {
+          setShowToast(false);
+        }, 5000);
         return;
       }
 
@@ -131,11 +143,17 @@ const Register: React.FC<RegisterProps> = () => {
         const errorData = await response.json();
         setShowToast(true);
         setToastMessage(`Registration failed. Error: ${errorData.error}`);
+        setTimeout(() => {
+          setShowToast(false);
+        }, 5000);
       }
       setShowOTP(false);
     } catch (error) {
       setShowToast(true);
       setToastMessage(`Error during registration: ${(error as Error).message}`);
+      setTimeout(() => {
+        setShowToast(false);
+      }, 5000);
     }
   };
 
@@ -325,7 +343,6 @@ const Register: React.FC<RegisterProps> = () => {
               name="enabled"
               onChange={(e) => {
                 setEnabled(e.target.checked ? 1 : 0);
-                console.log("Enabled:", enabled);
               }}
               checked={enabled === 1}
               className="mr-2"
