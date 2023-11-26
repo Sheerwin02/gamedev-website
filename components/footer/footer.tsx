@@ -150,7 +150,7 @@ export const Footer = () => {
               {/* Newsletter Section */}
               <div>
                 <h2 className="text-2xl font-medium text-white">
-                  Subsribe to Our Newsletter
+                  Don&apos;t miss out on more amazing content
                 </h2>
 
                 <p className="mt-4 max-w-lg text-gray-400 text-justify">
