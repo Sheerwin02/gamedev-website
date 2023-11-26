@@ -1,5 +1,5 @@
-import { IntroBox } from "./intro-box";
-import { headerHeight } from "../../../components/header/header";
+import { IntroBox } from "./IntroBox";
+import { headerHeight } from "../header/Header";
 
 export const AboutGame = () => {
   return (

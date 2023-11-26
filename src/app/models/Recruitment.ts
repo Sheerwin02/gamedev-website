@@ -1,5 +1,6 @@
 import { Model, DataTypes, Sequelize } from 'sequelize';
 import ModelBase from '../base/ModelBase';
+import { RecruitmentApplicant } from './RecruitmentApplicant';
 
 class Recruitment extends ModelBase {
   public id!: number;
@@ -40,11 +41,11 @@ class Recruitment extends ModelBase {
       tableName: 'game_dev_recruitments',
     };
 
-    return this.initializeModel('Recruitment', attributes, options, sequelize);
-  }
+    const Recruitment = this.initializeModel('Recruitment', attributes, options, sequelize);
 
-  static associate(models: Record<string, typeof Model>) {
-    // Define associations for the Recruitment model, if any
+    // Recruitment.hasMany(RecruitmentApplicant, { foreignKey: 'recruitment_id' });
+
+    return Recruitment;
   }
 }
 

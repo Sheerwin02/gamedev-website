@@ -1,0 +1,58 @@
+###
+# GET Request Test
+###
+@id = 2
+@auth = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIyLCJlbWFpbCI6InNoZWVyd2luQGV4YW1wbGV0ZXN0LmNvbSIsImlhdCI6MTY5OTc2Njk3NCwiZXhwIjoxNjk5NzcwNTc0fQ.qyUmIXaoSKfyF2AydYYo5b4b6Fu_6U7g_tTjolggvoE
+@base_url = "http://localhost:3000/api/recruitments/application"
+
+# Request
+GET http://localhost:3000/api/recruitments/application
+Content-Type: application/json
+Authorization: Bearer {{auth}}
+
+###
+# GET BY ID Request Test
+###
+
+# Request
+GET http://localhost:3000/api/recruitments/application/{{id}}
+Content-Type: application/json
+Authorization: Bearer {{auth}}
+
+###
+# POST Request Test
+###
+
+# Request
+POST http://localhost:3000/api/recruitments/application
+Content-Type: application/json
+Authorization: Bearer {{auth}}
+
+{
+  "message": "Recruitment Application Created Successfully",
+  "recruitmentId": 7
+}
+
+###
+# PUT Request Test
+###
+
+PUT http://localhost:3000/api/recruitments/application/{{id}}
+Content-Type: application/json
+Authorization: Bearer {{auth}}
+
+{
+  "position": "Updated Position",
+  "description": "Updated Description",
+  "requirements": "Updated Requirements",
+  "postedDate": "2023-10-15T12:00:00Z"
+}
+
+###
+# DELETE Request Test
+###
+
+DELETE http://localhost:3000/api/recruitments/application/{{id}}
+Content-Type: application/json
+Authorization: Bearer {{auth}}
+
