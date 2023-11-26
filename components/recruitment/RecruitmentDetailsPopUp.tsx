@@ -110,7 +110,12 @@ const RecruitmentDetailsPopup: React.FC<Props> = ({ recruitment, onClose }) => {
               </div>
             </div>
 
-            <FileUploadComponent onChange={handleFileChange} />
+            <FileUploadComponent
+              onChange={handleFileChange}
+              disabledMessage={
+                "Upload Function is currently unavailable. Developer is grinding on it."
+              }
+            />
 
             <div className="flex justify-end mt-4">
               <button

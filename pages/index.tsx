@@ -3,14 +3,14 @@
 import { ToastContainer } from "react-toastify";
 import { Inter } from "next/font/google";
 import { useState, useEffect } from "react";
-import { IntroVideo } from "../components/aboutus/IntroBanner";
 import { AboutGame } from "../components/aboutus/AboutUs";
 import { AboutUs } from "../components/aboutus/OurTeam";
-import LoginPage from "../components/login/login";
 import Loader from "../components/loader/loader";
-import { Footer } from "../components/footer/footer";
 import Head from "next/head";
-import NavBar from "../components/header/header";
+import { Footer } from "../components/footer/footer";
+import NavBar from "../components/header/Header";
+import { IntroVideo } from "../components/aboutus/IntroBanner";
+import RegisterPage from "./register";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -46,6 +46,9 @@ const Home: React.FC = () => {
           <NavBar />
           <>
             {/* <Countdown /> */}
+            {/* <Recruitments /> */}
+            {/* <OTP /> */}
+            {/* <RegisterPage /> */}
             <IntroVideo />
             <div className="mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10 {inter.className}">
               <AboutGame />

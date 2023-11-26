@@ -3,8 +3,24 @@ import bcrypt from 'bcrypt';
 import { ControllerBase } from '../base/ControllerBase';
 import UserRepository from '../repositories/UserRepository';
 import { generateToken, verifyToken } from '../../../utils/auth';
+import { OtpService } from '../services/otpService';
+import nodemailer from 'nodemailer';
+import { CustomError, ErrorType } from '../db/errorHelper';
+import NodeCache from 'node-cache';
 
 const userRepository = UserRepository.getInstance();
+const otpService = OtpService.getInstance();
+const otpCache = new NodeCache();
+
+const SMTP_CONFIG = {
+  host: process.env.SMTP_HOST,
+  port: parseInt(process.env.SMTP_PORT || '465', 10),
+  secure: process.env.SMTP_SECURE === 'true',
+  auth: {
+    user: process.env.SMTP_USER,
+    pass: process.env.SMTP_PASSWORD,
+  },
+};
 
 export class UserController extends ControllerBase {
   constructor() {
@@ -141,4 +157,56 @@ export class UserController extends ControllerBase {
       this.handleError(error, res);
     }
   }
+
+// OTP verification session
+public async sendOtp(req: NextApiRequest, res: NextApiResponse) {
+  try {
+    const { email } = req.body as { email: string };
+    const otp = otpService.generateOtp();
+
+    // Save the OTP in the cache with an expiration time (5 minutes)
+    otpCache.set(email, otp, 300);
+
+    // Send OTP to the user's email
+    await this.sendOtpByEmail(email, otp);
+
+    res.status(200).json({ message: 'OTP sent successfully' });
+  } catch (error) {
+    this.handleError(error, res);
+  }
+}
+
+public async verifyOtp(req: NextApiRequest, res: NextApiResponse) {
+  try {
+    const { email, enteredOtp } = req.body as { email: string; enteredOtp: string };
+
+    // Retrieve the stored OTP from the cache
+    const storedOtp = otpCache.get(email);
+
+    // Compare entered OTP with stored OTP
+    if (enteredOtp === storedOtp) {
+      res.status(200).json({ message: 'OTP verified successfully' });
+    } else {
+      res.status(400).json({ error: 'Invalid OTP' });
+    }
+  } catch (error) {
+    this.handleError(error, res);
+  }
+}
+
+private async sendOtpByEmail(email: string, otp: string): Promise<void> {
+  try {
+    const transporter = nodemailer.createTransport(SMTP_CONFIG);
+    const mailOptions = {
+      from: process.env.SMTP_USER,
+      to: email,
+      subject: 'Hana Studio Member Registration - OTP Verification',
+      text: `Thanks for joining us. Your OTP is: ${otp}`,
+    };
+
+    await transporter.sendMail(mailOptions);
+  } catch (error) {
+    throw new CustomError(ErrorType.InternalServerError, 'Failed to send OTP email');
+  }
+}
 }

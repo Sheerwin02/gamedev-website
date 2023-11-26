@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import RecruitmentItem from "./RecruitmentItem";
-import { useRouter } from "next/navigation";
 import RecruitmentDetailsPopup from "./RecruitmentDetailsPopUp";
 
 interface Recruitment {
@@ -12,19 +11,23 @@ interface Recruitment {
 }
 
 const RecruitmentList: React.FC = () => {
-  const [recruitments, setRecruitments] = useState<Recruitment[] | undefined>(
-    []
-  );
+  const [recruitments, setRecruitments] = useState<Recruitment[]>([]);
   const [selectedRecruitment, setSelectedRecruitment] =
     useState<Recruitment | null>(null);
-  const router = useRouter();
 
   useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch("/api/recruitment");
+        const data = await response.json();
+        setRecruitments(data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
     if (typeof window !== "undefined") {
-      fetch("/api/recruitment")
-        .then((response) => response.json())
-        .then((data) => setRecruitments(data))
-        .catch((error) => console.error("Error fetching data:", error));
+      fetchData();
     }
   }, []);
 
@@ -38,14 +41,12 @@ const RecruitmentList: React.FC = () => {
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      {recruitments?.map((recruitment) => (
-        <div
+      {recruitments.map((recruitment) => (
+        <RecruitmentItem
           key={recruitment.id}
-          className="bg-gray-800 rounded-lg overflow-hidden cursor-pointer transform transition-transform hover:scale-105 shadow-md hover:shadow-xl border border-gray-600 text-white"
-          onClick={() => openDetailsPopup(recruitment)}
-        >
-          <RecruitmentItem recruitment={recruitment} />
-        </div>
+          recruitment={recruitment}
+          onItemClicked={openDetailsPopup}
+        />
       ))}
       {selectedRecruitment && (
         <RecruitmentDetailsPopup
