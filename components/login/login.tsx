@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setToken } from "../../redux/authSlice";
 import { selectToken } from "../../redux/authSlice";
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 interface LoginPageProps {}
 
@@ -168,6 +169,18 @@ const LoginPage: React.FC<LoginPageProps> = () => {
                     Login
                   </button>
                 </form>
+              )}
+              {/* Sign Up text */}
+              {!authToken && (
+                <p className="mt-2 text-sm text-center text-gray-600">
+                  Haven't join us yet?{" "}
+                  <Link
+                    href="/register"
+                    className="text-indigo-500 hover:underline"
+                  >
+                    Sign Up
+                  </Link>
+                </p>
               )}
             </div>
           </div>
