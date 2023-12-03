@@ -1,0 +1,49 @@
+###
+# GET Request Test
+###
+@id = 4
+@base_url = "http://localhost:3000/api/supports/supportType"
+
+# Request
+GET http://localhost:3000/api/supportType
+Content-Type: application/json
+
+###
+# GET BY ID Request Test
+###
+
+# Request
+GET http://localhost:3000/api/supports/supportType/{{id}}
+Content-Type: application/json
+
+###
+# POST Request Test
+###
+
+# Request
+POST http://localhost:3000/api/supportType
+Content-Type: application/json
+
+{
+  "type": "refund"
+  
+}
+
+###
+# PUT Request Test
+###
+
+PUT http://localhost:3000/api/supports/supportType/{{id}}
+Content-Type: application/json
+
+{
+    "type": "abc"
+}
+
+
+###
+# DELETE Request Test
+###
+
+DELETE http://localhost:3000/api/supports/supportType/{{id}}
+Content-Type: application/json
