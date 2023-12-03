@@ -13,7 +13,7 @@ export class RecruitmentApplicantController extends ControllerBase {
 
   public async getAllRecruitmentApplicants(req: NextApiRequest, res: NextApiResponse) {
     try {
-      await verifyToken(req, res);
+      // await verifyToken(req, res);
       const recruitmentApplicants = await recruitmentApplicantRepository.getAll();
       res.status(200).json(recruitmentApplicants);
     } catch (error) {
@@ -24,7 +24,7 @@ export class RecruitmentApplicantController extends ControllerBase {
   public async getRecruitmentApplicantById(req: NextApiRequest, res: NextApiResponse) {
     const { id } = req.query;
     try {
-      await verifyToken(req, res);
+      // await verifyToken(req, res);
       const recruitmentApplicant = await recruitmentApplicantRepository.getById(Number(id));
       if (recruitmentApplicant) {
         res.status(200).json(recruitmentApplicant);
