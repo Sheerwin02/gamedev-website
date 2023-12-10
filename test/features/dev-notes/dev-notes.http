@@ -1,0 +1,75 @@
+###
+# POST Dev Note Request Test
+###
+@auth = ''
+# Request
+POST http://localhost:3000/api/dev-notes
+Content-Type: application/json
+# Authorization: Bearer {{auth}}
+
+{
+  "category": "Released Notes",
+  "title": "Version 1.0 Released",
+  "content": "We are excited to announce the release of version 1.0 with amazing features!",
+  "authorId": 32,
+  "authorName": "John Doe",
+  "version": "1.0",
+  "visibilityLevel": "Public",
+  "accessControl": "Admin",
+  "tags": "release, update",
+  "relatedIssueId": null,
+  "postedDate": "2023-11-29"
+}
+
+###
+# GET All Dev Notes Request Test
+###
+
+# Request
+GET http://localhost:3000/api/dev-notes
+Content-Type: application/json
+# Authorization: Bearer {{auth}}
+
+###
+# GET Dev Note by ID Request Test
+###
+
+# Variables
+@id = 4
+
+# Request
+GET http://localhost:3000/api/dev-note/{{id}}
+Content-Type: application/json
+# Authorization: Bearer {{auth}}
+
+###
+# PUT Dev Note Request Test
+###
+
+# Request
+PUT http://localhost:3000/api/dev-note/{{id}}
+Content-Type: application/json
+Authorization: Bearer {{auth}}
+
+{
+  "category": "Development Updates",
+  "title": "New Feature Added",
+  "content": "We have added a groundbreaking feature to enhance user experience!",
+  "authorId": 22,
+  "authorName": "John Doe",
+  "version": "1.1",
+  "visibilityLevel": "Public",
+  "accessControl": "Admin",
+  "tags": "feature, update",
+  "relatedIssueId": 102,
+  "postedDate": "2023-08-10"
+}
+
+###
+# DELETE Dev Note Request Test
+###
+
+# Request
+DELETE http://localhost:3000/api/dev-note/{{id}}
+Content-Type: application/json
+Authorization: Bearer {{auth}}

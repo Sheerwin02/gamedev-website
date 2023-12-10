@@ -19,28 +19,52 @@ export const generateToken = (userPayload: UserPayload): string => {
 };
 
 export const verifyToken = async (
-  req: AuthenticatedNextApiRequest,
-  res: NextApiResponse
+  reqOrToken: AuthenticatedNextApiRequest | string,
+  res?: NextApiResponse
 ): Promise<UserPayload> => {
-  // Check if the request contains a valid JWT token
-  const token = req.headers.authorization?.replace('Bearer ', '');
-  if (!token) {
-    return Promise.reject(res.status(401).json({ error: 'Unauthorized' }));
+  let token: string;
+
+  // Check if the first parameter is a request object or a token string
+  if (typeof reqOrToken === 'string') {
+    token = reqOrToken;
+  } else {
+    // If it's a request object, extract the token from the headers
+    token = reqOrToken.headers.authorization?.replace('Bearer ', '') || '';
+    // If no token is found in the request, reject with 401 Unauthorized
+    if (!token) {
+      if (res) {
+        return Promise.reject(res.status(401).json({ error: 'Unauthorized' }));
+      } else {
+        throw new Error('Unauthorized');
+      }
+    }
   }
 
   try {
     // Verify the token with your secret key
     const decodedToken = jwt.verify(token, jwtSecret) as UserPayload;
+
     if (!decodedToken) {
-      return Promise.reject(res.status(401).json({ error: 'Invalid token' }));
+      if (res) {
+        return Promise.reject(res.status(401).json({ error: 'Invalid token' }));
+      } else {
+        throw new Error('Invalid token');
+      }
     }
 
-    // Attach the decoded token to the request for further use
-    req.user = decodedToken;
+    // If it's a request object, attach the decoded token to the request for further use
+    if (res && typeof reqOrToken !== 'string') {
+      reqOrToken.user = decodedToken;
+    }
 
     // Continue with the actual API logic
     return Promise.resolve(decodedToken);
   } catch (error) {
-    return Promise.reject(res.status(401).json({ error: 'Invalid token' }));
+    if (res) {
+      return Promise.reject(res.status(401).json({ error: 'Invalid token' }));
+    } else {
+      throw new Error('Invalid token');
+    }
   }
 };
+
