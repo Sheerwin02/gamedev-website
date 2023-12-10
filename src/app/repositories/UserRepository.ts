@@ -45,7 +45,53 @@ class UserRepository extends RepositoryBase<User> {
       throw new CustomError(ErrorType.InternalServerError, 'Internal server error');
     }
   }
+  /* #### Region Reset password #### */
+  async updatePassword(id: number, newPassword: string, options?: { transaction: Transaction }): Promise<User> {
+    const t: Transaction = options?.transaction || (await this.sequelize.transaction());
+
+    try {
+      const user = await this.getById(id);
+      if (!user) {
+        throw new CustomError(ErrorType.NotFound, `${this.model.name} not found`);
+      }
+
+      // Set the new password and save the record
+      user.set('password', newPassword);
+      await user.save({ transaction: t });
+
+      if (!options?.transaction) await t.commit();
+      return user;
+    } catch (error) {
+      if (!options?.transaction) await t.rollback();
+      throw new CustomError(ErrorType.InternalServerError, 'Internal server error');
+    }
+  }
+
+  async saveResetToken(userId: number, resetToken: string, expirationInSeconds: number, options?: { transaction?: Transaction }): Promise<void> {
+    // Implement storing the reset token in the database, for example:
+    const t: Transaction = options?.transaction || (await this.sequelize.transaction());
   
+    try {
+      const user = await this.getById(userId);
+      if (!user) {
+        throw new CustomError(ErrorType.NotFound, 'User not found');
+      }
+  
+      // Set the reset token and its expiration time
+      user.set('resetToken', resetToken);
+      user.set('resetTokenExpiration', new Date(Date.now() + expirationInSeconds * 1000));
+      await user.save({ transaction: t });
+  
+      if (!options?.transaction) await t.commit();
+    } catch (error) {
+      if (!options?.transaction) await t.rollback();
+      throw new CustomError(ErrorType.InternalServerError, 'Internal server error');
+    }
+  }
+
+  
+  
+
   private async toggleEnable(id: number, value: number, options?: { transaction: Transaction }): Promise<User> {
     const t: Transaction = options?.transaction || await this.sequelize.transaction();
 

@@ -8,7 +8,7 @@ interface Recruitment {
   id: number;
   position: string;
   description: string;
-  requirements: string;
+  requirement: string;
   postedDate: string;
 }
 
@@ -90,7 +90,7 @@ const RecruitmentDetailsPopup: React.FC<Props> = ({ recruitment, onClose }) => {
                 {recruitment?.position}
               </h3>
               <p className="text-lg mb-2">{recruitment?.description}</p>
-              <p className="text-lg mb-2">{recruitment?.requirements}</p>
+              <p className="text-lg mb-2">{recruitment?.requirement}</p>
               <p className="mb-4">Posted Date: {recruitment?.postedDate}</p>
             </div>
 
@@ -110,7 +110,12 @@ const RecruitmentDetailsPopup: React.FC<Props> = ({ recruitment, onClose }) => {
               </div>
             </div>
 
-            <FileUploadComponent onChange={handleFileChange} />
+            <FileUploadComponent
+              onChange={handleFileChange}
+              disabledMessage={
+                "Upload Function is currently unavailable. Developer is grinding on it."
+              }
+            />
 
             <div className="flex justify-end mt-4">
               <button
