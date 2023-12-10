@@ -17,7 +17,7 @@ export const IntroVideo = () => {
   const router = useRouter();
 
   return (
-    <div className="relative w-full h-[30rem]">
+    <div className="relative w-full h-[30rem] z-[-1]">
       <video
         autoPlay
         loop
