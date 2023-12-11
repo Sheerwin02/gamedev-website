@@ -203,6 +203,14 @@ const LoginPage: React.FC<LoginPageProps> = () => {
                   </Link>
                 </p>
               )}
+              <p className="mt-2 text-sm text-center text-gray-600">
+                <Link
+                  href="/forgot-password"
+                  className="text-indigo-500 hover:underline"
+                >
+                  Forgot Password?
+                </Link>
+              </p>
             </div>
           </div>
         )}

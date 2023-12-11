@@ -6,7 +6,7 @@ interface Recruitment {
   id: number;
   position: string;
   description: string;
-  requirements: string;
+  requirement: string;
   postedDate: string;
 }
 
@@ -50,8 +50,8 @@ const RecruitmentList: React.FC = () => {
       ))}
       {selectedRecruitment && (
         <RecruitmentDetailsPopup
-          recruitment={selectedRecruitment}
           onClose={closeDetailsPopup}
+          recruitment={selectedRecruitment}
         />
       )}
     </div>
