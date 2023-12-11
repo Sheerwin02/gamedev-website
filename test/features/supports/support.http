@@ -1,0 +1,61 @@
+###
+# GET Request Test
+###
+@id = 2
+@base_url = "http://localhost:3000/api/supports"
+
+# Request
+GET http://localhost:3000/api/support
+Content-Type: application/json
+
+###
+# GET BY ID Request Test
+###
+
+# Request
+GET http://localhost:3000/api/supports/{{id}}
+Content-Type: application/json
+
+###
+# POST Request Test
+###
+
+# Request
+POST http://localhost:3000/api/support
+Content-Type: application/json
+
+{
+  "requestTypeId": 3,
+  "userId": 33,
+  "status": "Pending",
+  "subject": "abcddde",
+  "description": "wjhjkeshdks"
+}
+
+###
+# PUT Request Test
+###
+
+PUT http://localhost:3000/api/supports/{{id}}
+Content-Type: application/json
+
+{
+    "requestTypeId": 3,
+    "userId": 33,
+    "status": "Negative Test",
+    "subject": "abcde",
+    "description": "wjhjkeshuhgujhuihuyu"
+}
+###
+# PATCH Request Test - Mark Resolved
+###
+
+PATCH http://localhost:3000/api/supports/{{id}}/resolve
+Content-Type: application/json
+
+###
+# DELETE Request Test
+###
+
+DELETE http://localhost:3000/api/supports/{{id}}
+Content-Type: application/json

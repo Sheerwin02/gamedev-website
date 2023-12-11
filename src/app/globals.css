@@ -20,6 +20,9 @@
 
 html {
   scroll-behavior: smooth;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
 
 body {
@@ -32,6 +35,4 @@ body {
 }
 
 /* Your custom CSS goes here */
-.custom-class:hover .social-svg-icon {
-  fill: lightgray !important;
-}
+

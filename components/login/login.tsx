@@ -95,12 +95,33 @@ const LoginPage: React.FC<LoginPageProps> = () => {
     >
       <div className="relative z-50">
         <button
-          className="text-white font-semibold p-4 focus:outline-none"
+          className={`text-white font-semibold w-fit h-full items-center flex ${
+            authToken
+              ? ""
+              : "bg-indigo-500 px-6 py-2 focus:outline-none hover:ring hover:border-indigo-300 rounded-full text-center"
+          } `}
           onClick={() => setIsDropdownOpen(!isDropdownOpen)}
         >
           {authToken ? (
             <>
-              <span>{`Logged in as ${email}`}</span> <br />
+              <span className="lg:hidden">
+                {/* You can replace this with your profile icon SVG */}
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="white"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  className="w-5 h-5"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"
+                  />
+                </svg>
+              </span>
+              <span className="hidden lg:inline-block">{`Logged in as ${email}`}</span>{" "}
+              <br />
               {/* <button
                 className="text-indigo-500 hover:underline"
                 onClick={handleLogout}

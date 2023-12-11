@@ -17,30 +17,30 @@ export const IntroVideo = () => {
   const router = useRouter();
 
   return (
-    <div className="relative w-full h-[30rem] z-[-1]">
+    <div className="relative w-full h-[30rem]">
       <video
         autoPlay
         loop
         muted
-        className="absolute w-full h-full object-cover opacity-70 blur-sm"
+        className="absolute w-full h-full object-cover opacity-70 blur-sm z-[-1]"
         src={"/test-trailer.mp4"}
       >
         Your browser does not support the video tag.
       </video>
       <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40">
-        <div className="text-center">
+        <div className="relative text-center">
           <h1 className="text-3xl font-extrabold text-white cursor-default">
             Welcome To Hana Studio
           </h1>
           <button
             className="mt-7 px-8 py-4 bg-black text-white text-xl font-semibold rounded-xl hover:bg-blue-800"
             onClick={() => {
-              router.push("/error?errorCode=404");
+              // router.push("/error?errorCode=404");
 
-              // window.open(
-              //   "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-              //   "_blank"
-              // );
+              window.open(
+                "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+                "_blank"
+              );
             }}
           >
             WATCH TRAILER
