@@ -11,6 +11,8 @@ import { Footer } from "../components/footer/footer";
 import NavBar from "../components/header/Header";
 import { IntroVideo } from "../components/aboutus/IntroBanner";
 import RegisterPage from "./register";
+import Recruitments from "./recruitment";
+import Donation from "./donation";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -36,6 +38,17 @@ const Home: React.FC = () => {
         {/* <link rel="icon" href="/path-to-your-logo.png" /> */}
 
         {/* Your custom stylesheets or scripts */}
+        <link
+          rel="stylesheet"
+          type="text/css"
+          charSet="UTF-8"
+          href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css"
+        />
+        <link
+          rel="stylesheet"
+          type="text/css"
+          href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css"
+        />
         {/* Add your custom CSS or JS files here */}
       </Head>
       {loading ? (
@@ -46,13 +59,14 @@ const Home: React.FC = () => {
           <NavBar />
           <>
             {/* <Countdown /> */}
-            {/* <Recruitments /> */}
             {/* <OTP /> */}
             {/* <RegisterPage /> */}
             <IntroVideo />
-            <div className="mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10 {inter.className}">
+            <div className="mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10 bg-black text-white {inter.className}">
               <AboutGame />
               <AboutUs />
+              <Recruitments />
+              <Donation />
             </div>
           </>
           <Footer />

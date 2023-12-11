@@ -32,8 +32,8 @@ const RecruitmentItem: React.FC<Props> = ({ recruitment, onItemClicked }) => {
       className="rounded-lg bg-white border border-gray-300 shadow-md p-4 my-4 transition-transform transform hover:scale-105 cursor-pointer hover:shadow-xl"
       onClick={() => onItemClicked(recruitment)}
     >
-      <div className="flex justify-between items-center mb-4">
-        <h3 className="text-lg font-semibold text-indigo-600">
+      <div className="flex justify-between items-center ">
+        <h3 className="text-lg font-semibold text-indigo-600 mx-auto">
           {recruitment.position}
         </h3>
         {/* <button

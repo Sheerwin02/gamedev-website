@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { headerHeight } from "../components/header/Header";
 
 const Donate = () => {
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
@@ -19,7 +20,11 @@ const Donate = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-black text-white">
+    <div
+      id="donation"
+      className="flex items-center justify-center bg-black text-white"
+      style={{ scrollMarginTop: headerHeight + "px" }}
+    >
       <div className="w-full max-w-md p-6 bg-gray-800 rounded-md shadow-md text-gray-200">
         <h1 className="text-3xl font-extrabold mb-2 text-center text-purple-400">
           🚀 Support Hana Studio
