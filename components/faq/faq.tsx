@@ -13,9 +13,9 @@ const FAQItem: React.FC<FAQItemProps> = ({ question, answer }) => {
   };
 
   return (
-    <div className="mb-4">
+    <div className="mb-4 w-500">
       <div
-        className={`cursor-pointer flex justify-between items-center bg-gray-200 p-4 rounded-md transition ${
+        className={`cursor-pointer flex justify-between items-center bg-gray-200 p-4 rounded-md border border-gray-300 transition w-700 ${
           isOpen ? 'mb-2' : 'mb-0'
         }`}
         onClick={toggleOpen}
@@ -24,11 +24,11 @@ const FAQItem: React.FC<FAQItemProps> = ({ question, answer }) => {
         <div
           className={`transform transition ${isOpen ? 'rotate-180' : 'rotate-0'}`}
         >
-          ▼
+          +
         </div>
       </div>
       {isOpen && (
-        <div className="p-4 bg-white rounded-md shadow-md">
+        <div className="p-4 bg-white rounded-md border border-gray-300 shadow-md">
           <p className="text-gray-700">{answer}</p>
         </div>
       )}

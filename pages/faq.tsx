@@ -1,8 +1,10 @@
 import React from 'react';
 import FAQItem from '../components/faq/faq';
 import { Footer } from '../components/footer/footer';
+import { NavBar } from '../components/header/Header';
 
 import Link from 'next/link';
+import SupportPage from '../components/support/SupportPage';
 
 const FAQPage: React.FC = () => {
   const faqData = [
@@ -16,15 +18,14 @@ const FAQPage: React.FC = () => {
 
   return (  
       <div className="flex flex-col h-screen">
+        {/* <NavBar /> */}
         <div className="flex-grow max-w-2xl mx-auto p-6">
           <h1 className="text-3xl font-bold mb-6 text-gray-800">Frequently Asked Questions</h1>
           {faqData.map((item, index) => (
             <FAQItem key={index} question={item.question} answer={item.answer} />
           ))}
         </div>
-        <Link href="/SupportPage">
-          <div className="text-blue-500 mt-4 underline text-center mb-6">Go to SupportPage</div>
-        </Link>
+        <SupportPage/>
         <div className="justify-center flex flex-col">
           <Footer />
         </div>
