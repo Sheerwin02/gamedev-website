@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import  EmailSubscription  from '../email-sub/email'; // Adjust the path based on your project structure
+
 // import { SocialIcon } from "react-social-icons";
 
 // export const Footer = () => {
@@ -176,7 +178,10 @@ export const Footer = () => {
                   />
                   <button
                     className="mt-1 w-full rounded bg-teal-500 px-6 py-3 text-sm font-bold uppercase tracking-wide text-white transition-none hover:bg-teal-600 sm:mt-0 sm:w-auto sm:shrink-0"
-                    onClick={notify}
+                    onClick={() => {
+                      notify(); 
+                      {EmailSubscription}
+                    }}
                   >
                     Subscribe
                   </button>
